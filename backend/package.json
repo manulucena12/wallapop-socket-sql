@@ -6,7 +6,7 @@
   "scripts": {
     "test": "cross-env NODE_ENV=test jest --detectOpenHandles",
     "build": "tsc --build",
-    "start": "cross-env NODE_ENV=prod node build/index.js",
+    "start": "cross-env NODE_ENV=prod node build/src/index.js",
     "dev": "cross-env NODE_ENV=dev ts-node-dev --poll src/index.ts",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
