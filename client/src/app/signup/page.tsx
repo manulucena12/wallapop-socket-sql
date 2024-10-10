@@ -1,13 +1,31 @@
+'use client'
+
+import { createUser } from '@/services/users'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 export default function RegisterComponent() {
+
+  const router = useRouter()
+  const handleSignup = async (e:React.SyntheticEvent) => {
+    e.preventDefault()
+    const name = (document.getElementById('name') as HTMLInputElement).value
+    const lastName = (document.getElementById('lastName') as HTMLInputElement).value
+    const username = (document.getElementById('username') as HTMLInputElement).value
+    const password = (document.getElementById('password') as HTMLInputElement).value
+    const newUser = await createUser(username, name, lastName, password)
+    if(!newUser){
+      router.push('/')
+    }
+  }
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <div className="max-w-md w-full space-y-8 p-8 bg-white rounded-xl shadow-lg">
         <div className="text-center">
           <h2 className="mt-6 text-3xl font-extrabold text-gray-900">Create your account</h2>
         </div>
-        <form className="mt-8 space-y-6" action="#" method="POST">
+        <form className="mt-8 space-y-6" onSubmit={handleSignup}>
           <div className="rounded-md shadow-sm -space-y-px">
             <div className="flex -mx-2 mb-2">
               <div className="w-1/2 px-2">
@@ -63,7 +81,7 @@ export default function RegisterComponent() {
           </div>
         </form>
         <div className="text-center">
-          <Link href="/" className="font-medium text-teal-600 hover:text-teal-500 transition duration-150 ease-in-out">
+          <Link href="/login" className="font-medium text-teal-600 hover:text-teal-500 transition duration-150 ease-in-out">
             Already have an account? Log in
           </Link>
         </div>

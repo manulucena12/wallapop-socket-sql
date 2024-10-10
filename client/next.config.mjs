@@ -1,9 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    images: {
+      domains: ['rgbcustompc.com', 'rossellimac.es', "media.game.es", "amazon.es", "m.media-amazon.com"],
+    },
     webpackDevMiddleware: (config) => {
       config.watchOptions = {
-        poll: 1000, // Verifica cambios cada segundo
-        aggregateTimeout: 300, // Tiempo de espera antes de recompilar
+        poll: 1000, 
+        aggregateTimeout: 300, 
       };
       return config;
     },

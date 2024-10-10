@@ -1,4 +1,15 @@
 services:
+  postgres:
+    image: postgres
+    container_name: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: lucena
+      POSTGRES_DB: wallapopdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
   app:
     build:
       context: .
@@ -9,3 +20,5 @@ services:
     ports:
       - "3002:3002" 
     command: npm run dev 
+    depends_on:
+      - postgres

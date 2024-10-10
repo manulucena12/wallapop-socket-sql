@@ -1,5 +1,5 @@
 export interface Product {
-  readonly id: string;
+  readonly id?: string;
   name: string;
   description: string;
   price: number;
@@ -8,4 +8,5 @@ export interface Product {
   user_id: number;
   photo: string;
   category: string;
+  likes?: number;
 }

@@ -19,7 +19,26 @@ export const getProductById = async (req: Request, res: Response) => {
       "SELECT * FROM products WHERE id = $1",
       [id],
     );
-    return res.status(200).json(rows[0]);
+    const { rows: likes } = await client.query(
+      "SELECT * FROM likes WHERE product = $1",
+      [id],
+    );
+    if (rows.length === 0) {
+      return res.status(400).json("Product not found");
+    }
+    const product: Product = {
+      name: rows[0].name,
+      description: rows[0].description,
+      likes: likes.length,
+      condition: rows[0].condition,
+      category: rows[0].category,
+      id: rows[0].id,
+      photo: rows[0].photo,
+      user_id: rows[0].user_id,
+      price: rows[0].price,
+      location: rows[0].location,
+    };
+    return res.status(200).json(product);
   } catch (error) {
     console.log(error);
     return res.status(500).json("Internal server error");
@@ -102,7 +121,55 @@ export const deleteProduct = async (req: Request, res: Response) => {
   }
   try {
     await client.query("DELETE FROM products WHERE id = $1", [productId]);
+    await client.query("DELETE FROM likes WHERE product = $1", [productId]);
     return res.status(204).end();
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json("Internal server error");
+  }
+};
+
+export const updateProduct = async (
+  req: Request<NonNullable<unknown>, NonNullable<unknown>, Product>,
+  res: Response,
+) => {
+  const {
+    name,
+    description,
+    condition,
+    category,
+    location,
+    price,
+    photo,
+    user_id,
+    id,
+  } = req.body;
+  if (
+    !name ||
+    !description ||
+    !condition ||
+    !category ||
+    !location ||
+    !price ||
+    !photo ||
+    !user_id ||
+    !id
+  ) {
+    return res.status(400).json("Missing data");
+  }
+  const { rows: users } = await client.query(
+    "SELECT * FROM users WHERE id = $1",
+    [user_id],
+  );
+  if (users.length === 0) {
+    return res.status(400).json("This user does not exist");
+  }
+  try {
+    const { rows } = await client.query(
+      "UPDATE products SET name = $1, description = $2, condition = $3, price = $4, category = $5, photo = $6, location = $7 WHERE id = $8 RETURNING *",
+      [name, description, condition, price, category, photo, location, id],
+    );
+    return res.status(201).json(rows[0]);
   } catch (error) {
     console.log(error);
     return res.status(500).json("Internal server error");
