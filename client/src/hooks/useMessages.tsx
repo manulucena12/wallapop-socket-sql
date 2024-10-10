@@ -1,4 +1,4 @@
-import { apiUrl } from '@/app/layout'
+import { apiUrl } from '@/config'
 import { getSingleChat } from '@/services/chats'
 import { getAllUsers } from '@/services/users'
 import { Data, User } from '@/types'

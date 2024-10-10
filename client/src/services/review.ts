@@ -1,5 +1,5 @@
-import { apiUrl } from "@/app/layout";
-import { Review } from "@/types.d.";
+import { apiUrl } from "@/config";
+import { Review } from "@/types.d";
 import axios, { isAxiosError } from "axios";
 
 export const submitReview = async (grade: number, content: string, reviewed: number, reviewer: number) : Promise<string | Review> => {

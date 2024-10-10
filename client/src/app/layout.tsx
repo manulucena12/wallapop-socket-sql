@@ -1,9 +1,6 @@
 import Head from "next/head";
 import "./globals.css";
 
-export const apiUrl = 'http://localhost:3002'
-
-
 export default function RootLayout({
   children,
 }: Readonly<{

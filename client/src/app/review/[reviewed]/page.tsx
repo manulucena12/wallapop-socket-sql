@@ -1,7 +1,7 @@
 'use client'
 
 import { submitReview } from '@/services/review'
-import { User } from '@/types.d.'
+import { User } from '@/types.d'
 import { useParams, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 

@@ -1,4 +1,4 @@
-import { apiUrl } from "@/app/layout"
+import { apiUrl } from "@/config"
 import { Product } from "@/types.d"
 import axios, { isAxiosError } from "axios"
 

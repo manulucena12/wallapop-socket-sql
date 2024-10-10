@@ -1,7 +1,7 @@
 'use client'
 
 import { getReview, updateReview } from '@/services/review'
-import { Review } from '@/types.d.'
+import { Review } from '@/types.d'
 import { useParams, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
