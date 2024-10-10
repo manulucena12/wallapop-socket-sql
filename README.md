@@ -1,5 +1,7 @@
 # Wallapop Mock Project
 
+[![Backend](https://github.com/manulucena12/wallapop-socket-sql/actions/workflows/pipeline.yml/badge.svg)](https://github.com/manulucena12/wallapop-socket-sql/actions/workflows/pipeline.yml)
+
 This is a Wallapop Mock project with the purpose of study and learning. It is a FullStack Application developed using modern technologies to simulate the core functionalities of the popular Wallapop platform.
 
 ## Technologies Used
@@ -22,7 +24,7 @@ This is a Wallapop Mock project with the purpose of study and learning. It is a 
 - **Tailwind CSS**: Utility-first CSS framework for designing modern UIs.
 
 ### Hosting:
-- The frontend of this project is hosted at: 
+- The frontend of this project is hosted at: https://wallapop-socket-sql.vercel.app/
 
 
 1. Clone the repository:
