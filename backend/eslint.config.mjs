@@ -16,5 +16,3 @@ export default [
   ...tseslint.configs.recommended,
   eslintPluginPrettierRecommended,
 ];
-
-//
